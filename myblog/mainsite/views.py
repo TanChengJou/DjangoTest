@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Post
 
 from django.template.loader import get_template
 from datetime import datetime
+
+
 
 # 簡單呈現資料庫內容
 # def homepage(request):
@@ -22,3 +25,14 @@ def homepage(request):
     now = datetime.now()
     html = template.render(locals())
     return HttpResponse(html)
+
+# 增加分頁
+def showpost(request, slug):
+    template = get_template('post.html')
+    try:
+        post = Post.objects.get(slug=slug)
+        if post != None:
+            html = template.render(locals())
+            return HttpResponse(html)
+    except:
+        return redirect('/')

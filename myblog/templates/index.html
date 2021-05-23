@@ -1,28 +1,14 @@
-<html>
-<head>
-    <meta charset='utf-8'>
-    <title>歡迎光臨我的部落格</title>
-</head>
-<body>
-    <h1>歡迎光臨我的部落格</h1>
-    <img src='https://b.ecimg.tw/items/QFCD19D9009BS67/000001_1534528106.jpg' height='300px'>
-    <hr>
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %} 歡迎光臨我的部落格-首頁 {% endblock %}
+{% block headmessage %}
+    <h3 style='font-family:標楷體;'>本站文章列表
+{% endblock %}
+{% block content %}
     {% for post in posts %}
-        <!-- <p style='font-family: 微軟正黑體;font-size:16pt;font-weight:bold;'>
-        {{post.title}}
+        <p style=‘font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
+        <a href='/post/{{post.slug}}'>{{ post.title }}</a>
         </p>
-        <p style='font-family: 微軟正黑體;font-size:10pt;letter-spacing:1pt;'>
-        {{post.body}}
-        </p>
-        <p style='font-family: 微軟正黑體;font-size:10pt;letter-spacing:1pt;'>
-        {{post.pub_date}}
-        </p> -->
-        <p style='font-family: 微軟正黑體;font-size:16pt;font-weight:bold;'>
-            <a href='/post/{{post.slug}}'>{{post.title}}</a>{{post.pub_date}}
-        </p>            
     {% endfor %}
-    <hr>
-    <a href='http://google.com'>Google</a>    
-    <h3>現在時間：{{now}}</h3>
-</body>
-</html>
+{% endblock %}
