@@ -16,10 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainsite.views import homepage,showpost
+from mysite import views as MTV_views
+from django.conf.urls import include
+
+
+
+MTV_urlpatterns = [
+    path('', homepage),
+    path('about/', MTV_views.about),
+    path('list/', MTV_views.listing),
+    path('list/<sku>/', MTV_views.disp_detail),
+]
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
     path('post/<slug:slug>/', showpost),
+    path('MTV/', include(MTV_urlpatterns)),
 ]
